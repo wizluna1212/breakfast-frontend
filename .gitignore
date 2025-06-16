@@ -1,0 +1,45 @@
+# === Logs ===
+logs
+*.log
+npm-debug.log*
+
+# === Node modules ===
+node_modules/
+
+# === Build output ===
+dist/
+dist-ssr/
+.output/
+.vitepress/
+
+# === Local env files ===
+.env
+*.local
+
+# === Editor files ===
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.tsbuildinfo
+
+# === Cypress (如使用) ===
+cypress/videos/
+cypress/screenshots/
+
+# === 暫存舊檔、不上傳的試作區 ===
+src/api/login.js
+src/api/order.js
+src/api/product.js
+src/components/CartModalOld.vue
+src/components/HomeCard.vue
+src/stores/cartStoreOld.js
+src/stores/orderStoreOld.js
+src/utils/request.js
+
+# === Package lock file (可視團隊策略排除) ===
+package-lock.json
