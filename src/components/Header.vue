@@ -2,7 +2,7 @@
   <header class="center-xy p-2 justify-between mx-3 border-b border-gray-200 shadow-sm">
     <div class="justify-around">
       <img src="" alt="" />
-      <p class="text-lg font-extrabold" @click="$router.push('/')">早餐店</p>
+      <p class="text-lg font-extrabold" @click="$router.push('/')">晨光早餐店</p>
     </div>
     <nav class="space-x-3">
       <template v-for="item in displayNavItems" :key="item.path">

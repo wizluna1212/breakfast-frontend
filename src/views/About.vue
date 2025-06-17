@@ -2,7 +2,7 @@
   <div class="max-w-4xl mx-auto p-6">
     <div class="relative">
       <H1
-        class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-4 text-2xl font-medium text-gray-700 font-semibold"
+        class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-4 text-2xl text-gray-700 font-semibold"
       >
         關於這個專案
       </H1>
