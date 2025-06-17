@@ -45,7 +45,8 @@
 ---
 
 ## **專案結構**
-
+```
 Breakfast/
 ├── frontend/ 前端專案（Vue）
 ├── backend/ 模擬後端（JSON Server + Express）
+```
