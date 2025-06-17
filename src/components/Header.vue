@@ -1,5 +1,5 @@
 <template>
-  <header class="center-xy p-2 justify-between mx-3">
+  <header class="center-xy p-2 justify-between mx-3 border-b border-gray-200 shadow-sm">
     <div class="justify-around">
       <img src="" alt="" />
       <p class="text-lg font-extrabold" @click="$router.push('/')">早餐店</p>
