@@ -202,6 +202,7 @@ const toggleProductDia = (product) => {
   if (cartStore.editingItem) {
     logRaw('從購物車編輯模式，editingItem:', cartStore.editingItem)
     selectedProduct.value = { ...cartStore.editingItem }
+    logRaw('設置後的selectedProduct:', selectedProduct.value)
     hasExtras.value = cartStore.editingItem.extraType?.length
       ? extras.value.filter((extra) => cartStore.editingItem.extraType.includes(extra.id))
       : []

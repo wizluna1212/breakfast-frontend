@@ -69,6 +69,7 @@ export const useCartStore = defineStore('cart', () => {
         quantity: product.quantity || 1,
         extraType: product.extraType,
         extras: extras || [],
+        image: product.image,
       }
       logRaw('準備加入的購物車項目:', cartItem)
 

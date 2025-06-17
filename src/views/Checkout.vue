@@ -166,7 +166,7 @@
         </div>
       </div>
       <!-- step 3 -->
-      <div v-if="step === 3" class="center-x w-full my-8">
+      <div v-if="step === 3" class="center-x w-full my-8 p-2">
         <div v-if="orderStore.completedOrder" class="space-y-2">
           <p class="text-lg font-semibold">您的訂單已成功送出！</p>
           <p>訂單編號：{{ orderStore.completedOrder.orderId }}</p>
