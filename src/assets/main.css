@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自訂組件 */
+@layer components {
+  .center-xy {
+    @apply flex justify-center items-center;
+  }
+  .center-x {
+    @apply flex justify-center;
+  }
+  .center-y {
+    @apply flex items-center;
+  }
+}

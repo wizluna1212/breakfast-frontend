@@ -1,0 +1,20 @@
+:root {
+  --orange-50: #fff7ed;
+  --orange-100: #ffedd5;
+  --orange-200: #fed7aa;
+  --orange-300: #fdba74;
+  --orange-400: #fb923c;
+  --orange-500: #f97316;
+  --orange-600: #ea580c;
+
+  --el-color-primary: var(--orange-500) !important;
+  --el-color-primary-light-3: var(--orange-400) !important;
+  --el-color-primary-light-5: var(--orange-300) !important;
+  --el-color-primary-light-7: var(--orange-100) !important;
+  --el-color-primary-light-9: var(--orange-50) !important;
+  --el-color-primary-dark-2: var(--orange-600) !important;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+}
