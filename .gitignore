@@ -29,15 +29,3 @@ dist-ssr/
 *.sw?
 *.tsbuildinfo
 
-
-
-# === 不要上傳的舊檔案 / 草稿區（建議移出正式專案） ===
-src/api/login.js
-src/api/order.js
-src/api/product.js
-src/components/CartModalOld.vue
-src/components/HomeCard.vue
-src/stores/cartStoreOld.js
-src/stores/orderStoreOld.js
-src/utils/request.js
-
