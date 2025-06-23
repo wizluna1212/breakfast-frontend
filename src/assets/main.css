@@ -14,3 +14,14 @@
     @apply flex items-center;
   }
 }
+
+.el-message {
+  min-width: 80vw !important; /* 手機時寬度佔螢幕80% */
+  max-width: 90vw !important;
+}
+@media (min-width: 640px) {
+  .el-message {
+    min-width: 380px !important; /* 桌機維持預設 */
+    max-width: 500px !important;
+  }
+}

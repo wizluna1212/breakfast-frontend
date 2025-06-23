@@ -9,7 +9,7 @@
     />
   </el-tabs>
   <!-- 查詢 -->
-  <div class="w-[80%] mx-auto mb-4">
+  <div class="w-[90%] mx-auto mb-4 lg:w-[80%]">
     <el-input v-model="searchKeyword" placeholder="搜尋商品">
       <template #prefix>
         <el-icon><Search /></el-icon>
@@ -17,29 +17,39 @@
     </el-input>
   </div>
   <!-- 商品 -->
-  <div class="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-    <el-card
-      v-for="product in displayProducts"
-      :key="product.id"
-      class="h-[300px] w-[300px] mb-5 relative"
-    >
-      <div class="h-[200px] w-full overflow-hidden">
-        <img
-          :src="`/breakfast-frontend/images/${product.image}.jpg`"
-          :alt="product.name"
-          loading="lazy"
-          class="w-full h-full object-cover object-center"
-        />
-      </div>
-      <div class="text-xl font-semibold pt-2">{{ product.name }}</div>
-      <div class="text-red-500">${{ product.price }}</div>
+  <div class="w-full lg:w-[90%] mx-auto min-h-[300px] relative">
+    <LoadingOverlay v-if="isLoading" />
+    <template v-if="displayProducts.length > 0">
       <div
-        class="h-8 w-8 rounded-full center-xy bg-slate-200 absolute right-5 bottom-5 cursor-pointer hover:bg-orange-100"
-        @click="toggleProductDia(product)"
+        class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 justify-items-center"
       >
-        <el-icon><ShoppingCart /></el-icon>
+        <el-card
+          v-for="product in displayProducts"
+          :key="product.id"
+          class="h-[300px] w-[260px] mb-5 relative"
+        >
+          <div class="h-[200px] w-full overflow-hidden">
+            <img
+              :src="`/breakfast-frontend/images/${product.image}.jpg`"
+              :alt="product.name"
+              loading="lazy"
+              class="w-full h-full object-cover object-center"
+            />
+          </div>
+          <div class="text-xl font-semibold pt-2">{{ product.name }}</div>
+          <div class="text-red-500">${{ product.price }}</div>
+          <div
+            class="h-8 w-8 rounded-full center-xy bg-slate-200 absolute right-5 bottom-5 cursor-pointer hover:bg-orange-100"
+            @click="toggleProductDia(product)"
+          >
+            <el-icon><ShoppingCart /></el-icon>
+          </div>
+        </el-card>
       </div>
-    </el-card>
+    </template>
+    <template v-else>
+      <div v-if="searchKeyword" class="text-center text-gray-400 py-10 text-lg">查無此商品</div>
+    </template>
   </div>
   <!-- 購物車圖示 -->
   <div
@@ -55,9 +65,9 @@
     <el-icon><ShoppingCart /></el-icon>
   </div>
   <!-- 商品頁彈窗 -->
-  <el-dialog v-model="cartStore.showProduct" class="!w-full md:!w-[50%]">
-    <el-card class="!h-full overflow-y-auto">
-      <div class="h-[220px] w-full overflow-hidden bg-gray-100 flex items-center justify-center">
+  <el-dialog v-model="cartStore.showProduct" class="!w-full md:!w-[80%] lg:!w-[60%]">
+    <el-card class="!h-full overflow-y-auto md:p-2 2xl:px-6">
+      <div class="h-[220px] w-full overflow-hidden bg-gray-100 center-xy">
         <img
           :src="`/breakfast-frontend/images/${selectedProduct.image}.jpg`"
           :alt="selectedProduct.name"
@@ -65,21 +75,25 @@
           class="max-w-full max-h-full object-contain"
         />
       </div>
-      <div class="text-xl font-bold">
+      <div class="text-xl font-bold py-3">
         {{ selectedProduct.name }}
         <span class="text-red-800 ml-4 text-lg">${{ selectedProduct.price }}</span>
       </div>
       <!-- 加料複選有數量 -->
       <div v-for="extra in hasExtras" :key="extra.id">
         <div v-if="extra.type === 'add-on'">
-          <el-button
-            v-for="opt in extra.options"
-            :key="opt.id"
-            @click="addMultipleExtras(extra, opt)"
-          >
-            <div>{{ opt.name }}</div>
-            <div>${{ opt.price }}</div></el-button
-          >
+          <div class="flex flex-wrap gap-3">
+            <el-button
+              v-for="opt in extra.options"
+              :key="opt.id"
+              @click="addMultipleExtras(extra, opt)"
+              class="!w-[120px] !m-0"
+            >
+              <div>{{ opt.name }}</div>
+              <div>${{ opt.price }}</div></el-button
+            >
+          </div>
+
           <!-- 被選擇的選項 -->
           <div class="py-2">
             <div class="font-bold">加料區</div>
@@ -87,13 +101,18 @@
             <div
               v-for="item in selectedExtra.find((e) => e.id === extra.id)?.options || []"
               :key="item.id"
-              class="flex gap-2"
+              class="center-y gap-2 py-1"
             >
-              <div v-if="item.quantity > 0" class="flex gap-2">
-                <el-input-number v-model="item.quantity" :min="0" :max="3" class="h-5 w-30" />
+              <template v-if="item.quantity > 0">
+                <el-input-number
+                  v-model="item.quantity"
+                  :min="0"
+                  :max="3"
+                  class="h-5 w-[140px] sm:w-[160px]"
+                />
                 <div>{{ item.name }}</div>
                 <div>共${{ item.price * item.quantity }}</div>
-              </div>
+              </template>
             </div>
           </div>
         </div>
@@ -127,16 +146,16 @@
       </div>
 
       <!-- 加入購物車 -->
-      <div class="center-xy py-3 gap-3">
+      <div class="center-xy py-3 gap-3 flex-col sm:flex-row">
         <el-input-number
           v-if="selectedProduct.quantity"
           v-model="selectedProduct.quantity"
           :min="1"
-          class="w-[100px]"
+          class="w-[150px]"
         />
 
         <el-button
-          class="flex-1 rounded-md text-white text-lg font-semibold relative"
+          class="w-[230px] sm:flex-1 rounded-md text-white text-lg font-semibold relative"
           type="primary"
           @click="addToCart"
           >加入購物車 <span class="absolute right-2">+${{ productPrice }}</span></el-button
@@ -155,6 +174,7 @@ import { useCartStore } from '@/stores/cartStore'
 import { logRaw } from '@/utils/Logger'
 import CartDrawer from '@/components/CartDrawer.vue'
 import { getMenu } from '@/api/api'
+import LoadingOverlay from '@/components/LoadingOverlay.vue'
 
 const cartStore = useCartStore()
 const activeCategory = ref(0)
@@ -162,6 +182,7 @@ const searchKeyword = ref('')
 const categories = ref([])
 const products = ref([])
 const extras = ref([])
+const isLoading = ref(true)
 
 const filteredProducts = computed(() => {
   if (activeCategory.value === 0) {
@@ -465,8 +486,10 @@ const fetchMenu = async () => {
   }
 }
 
-onMounted(() => {
-  fetchMenu()
+onMounted(async () => {
+  isLoading.value = true
+  await fetchMenu()
+  isLoading.value = false
 })
 
 // 監聽類別變化

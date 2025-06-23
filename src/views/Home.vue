@@ -1,7 +1,6 @@
 <template>
   <div class="w-full">
-    <LoadingOverlay v-if="isLoading" />
-    <el-carousel v-else :interval="0" class="relative h-[60vh] md:h-[600px] xl:h-[700px]">
+    <el-carousel :interval="0" class="relative h-[60vh] md:h-[600px] xl:h-[700px]">
       <el-carousel-item
         v-for="item in banners"
         :key="item.id"

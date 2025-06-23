@@ -1,7 +1,7 @@
 <template>
   <footer class="bg-orange-400 py-5 text-white">
-    <div class="container mx-auto w-full md:h-[250px]">
-      <div class="grid grid-cols-1 md:grid-cols-3 justify-center gap-4 px-4 md:p-0">
+    <div class="w-full mx-auto md:h-[260px] sm:px-4">
+      <div class="mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- 店鋪資訊 -->
         <div>
           <h2 class="font-bold text-2xl pb-2">晨光早餐店</h2>

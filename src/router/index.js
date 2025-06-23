@@ -13,7 +13,6 @@ import ChangePassword from '@/views/ChangePassword.vue' //修改密碼
 import ForgotPassword from '@/views/ForgotPassword.vue' //忘記密碼
 import ResetPassword from '@/views/ResetPassword.vue' //忘記密碼後重設密碼
 import { useUserStore } from '@/stores/userStore'
-// import LoadingOverlay from '@/components/LoadingOverlay.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,11 +52,6 @@ const router = createRouter({
         },
       ],
     },
-    // {
-    //   path: '/loading',
-    //   name: 'loading',
-    //   component: LoadingOverlay,
-    // },
   ],
 })
 

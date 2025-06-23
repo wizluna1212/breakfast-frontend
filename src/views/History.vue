@@ -62,7 +62,7 @@
     </div>
 
     <!-- 訂單詳情對話框 -->
-    <el-dialog v-model="showHistory" title="訂單詳情" width="100% md:60% ">
+    <el-dialog v-model="showHistory" title="訂單詳情" class="!w-full max-w-xl">
       <div v-if="selectedOrder" class="p-3 md:p-5">
         <div class="flex items-center mb-4">
           <span class="font-bold w-24">訂單編號：</span>

@@ -1,16 +1,25 @@
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div class="min-h-screen flex flex-col max-w-5xl mx-auto">
     <div class="bg-gray-100 w-full center-xy">
-      <div class="flex p-4" :class="step === 1 ? 'border-b-2 border-orange-300' : ''">
+      <div
+        class="flex flex-col xs:flex-row p-4"
+        :class="step === 1 ? 'border-b-2 border-orange-300' : ''"
+      >
         <div :class="step === 1 ? 'text-orange-300 font-bold' : 'text-gray-400'">Step 1.</div>
         <div :class="step === 1 ? 'text-black' : 'text-gray-400'">取餐方式</div>
       </div>
       <div class="text-gray-600">➔</div>
-      <div class="flex p-4" :class="step === 2 ? 'border-b-2 border-orange-300' : ''">
+      <div
+        class="flex flex-col xs:flex-row p-4"
+        :class="step === 2 ? 'border-b-2 border-orange-300' : ''"
+      >
         <div :class="step === 2 ? 'text-orange-300 font-bold' : 'text-gray-400'">Step 2.</div>
         <div :class="step === 2 ? 'text-black' : 'text-gray-400'">訂購資訊</div>
       </div>
-      <div class="flex p-4" :class="step === 3 ? 'border-b-2 border-orange-300' : ''">
+      <div
+        class="flex flex-col xs:flex-row p-4"
+        :class="step === 3 ? 'border-b-2 border-orange-300' : ''"
+      >
         <div :class="step === 3 ? 'text-orange-300 font-bold' : 'text-gray-400'">Step 3.</div>
         <div :class="step === 3 ? 'text-black' : 'text-gray-400'">訂購完成</div>
       </div>
@@ -24,14 +33,14 @@
           <div class="center-x border-b py-1 font-bold bg-gray-100 text-gray-400 text-center">
             <div class="w-1/2">商品名稱</div>
             <div class="w-1/4">數量</div>
-            <div class="w-1/4 text-right">價格</div>
+            <div class="w-1/4 text-right pr-2">價格</div>
           </div>
           <!-- 商品列 -->
           <div v-for="cartItem in cartItems" :key="cartItem.cartId" class="border-b">
             <div class="center-xy py-1">
               <div class="w-1/2 text-lg">{{ cartItem.name }}</div>
               <div class="w-1/4 text-center">{{ cartItem.quantity }}</div>
-              <div class="w-1/4 text-right">${{ cartItem.price * cartItem.quantity }}</div>
+              <div class="w-1/4 text-right pr-2">${{ cartItem.price * cartItem.quantity }}</div>
             </div>
             <!-- 加料列 -->
             <div v-if="cartItem.extras && cartItem.extras.length > 0">
@@ -39,13 +48,13 @@
                 <div v-for="opt in extra.options" :key="opt.id" class="center-xy w-full py-1">
                   <div class="w-1/2 pl-4">{{ opt.name }} (${{ opt.price }})</div>
                   <div class="w-1/4 text-center">{{ opt.quantity }}</div>
-                  <div class="w-1/4 text-right">${{ opt.price * opt.quantity }}</div>
+                  <div class="w-1/4 text-right pr-2">${{ opt.price * opt.quantity }}</div>
                 </div>
               </div>
             </div>
           </div>
           <!-- 小計 -->
-          <div class="center-xy border-t py-2 mt-2">
+          <div class="center-xy py-2 mt-2">
             <span class="text-lg font-bold">小計：</span>
             <span class="text-2xl font-bold text-red-500 ml-2">${{ totalPrice }}</span>
           </div>
@@ -92,11 +101,11 @@
       </div>
       <!-- Step 2 -->
       <div v-if="step === 2" class="center-x w-full">
-        <div class="w-[80%] flex flex-col p-2">
+        <div class="w-full sm:w-[80%] flex flex-col p-2">
           <div class="center-x text-xl pt-5 font-semibold">早餐店</div>
           <!-- 店家及取餐資訊 -->
           <div v-for="(info, index) in checkoutInfo" :key="index" class="border-b w-full p-2">
-            <span class="font-semibold">{{ info.label }}</span>
+            <span class="font-semibold pr-2">{{ info.label }}</span>
             <span>{{ info.value }}</span>
           </div>
           <!-- 購物車內容 -->
@@ -105,14 +114,14 @@
             <div class="center-x border-b py-1 font-bold bg-gray-100 text-gray-400 text-center">
               <div class="w-1/2">商品名稱</div>
               <div class="w-1/4">數量</div>
-              <div class="w-1/4 text-right">價格</div>
+              <div class="w-1/4 text-right pr-2">價格</div>
             </div>
             <!-- 商品列 -->
             <div v-for="cartItem in cartItems" :key="cartItem.cartId" class="border-b">
               <div class="center-xy py-1">
                 <div class="w-1/2 text-lg">{{ cartItem.name }}</div>
                 <div class="w-1/4 text-center">{{ cartItem.quantity }}</div>
-                <div class="w-1/4 text-right">${{ cartItem.price * cartItem.quantity }}</div>
+                <div class="w-1/4 text-right pr-2">${{ cartItem.price * cartItem.quantity }}</div>
               </div>
               <!-- 加料列 -->
               <div v-if="cartItem.extras && cartItem.extras.length > 0">
@@ -120,7 +129,7 @@
                   <div v-for="opt in extra.options" :key="opt.id" class="center-xy w-full py-1">
                     <div class="w-1/2 pl-4">{{ opt.name }} (${{ opt.price }})</div>
                     <div class="w-1/4 text-center">{{ opt.quantity }}</div>
-                    <div class="w-1/4 text-right">${{ opt.price * opt.quantity }}</div>
+                    <div class="w-1/4 text-right pr-2">${{ opt.price * opt.quantity }}</div>
                   </div>
                 </div>
               </div>
@@ -191,7 +200,7 @@
         </div>
       </div>
       <!-- 選擇日期時間彈窗 -->
-      <el-dialog v-model="showPickup" class="center-xy">
+      <el-dialog v-model="showPickup" class="center-xy w-full xs:w-[70%] max-w-md">
         <div class="py-2">
           <div class="text-lg">選擇日期</div>
           <el-date-picker
@@ -346,6 +355,7 @@ const selectPickup = (type) => {
       hour12: false,
     }).format(inTwentyMinutes) //HH:mm(str)
     selectedDate.value = defaultDate
+
     if (!isClose) {
       if (beforeOpen) {
         selectedTime.value = '06:00'
@@ -361,7 +371,7 @@ const selectPickup = (type) => {
       selectedDate.value = null
       selectedTime.value = ''
       takeTimeISO.value = ''
-      takeTimeText.value = ''
+      takeTimeText.value = '今日已過營業時間，請選擇其它日期'
     }
   }
 }
@@ -382,10 +392,16 @@ const disabledDate = (time) => {
   const maxDate = new Date()
   maxDate.setDate(today.getDate() + 6)
 
+  // 判斷今天是否已過營業時間（15:00）
+  const isToday = timeObj.toDateString() === today.toDateString()
+  const now = new Date()
+  const afterClose = now.getHours() > 15 || (now.getHours() === 15 && now.getMinutes() > 0)
+
   return (
     timeObj.getTime() < today.setHours(0, 0, 0, 0) ||
     timeObj.getTime() > maxDate.setHours(23, 59, 59, 999) ||
-    timeObj.getDay() === 0
+    timeObj.getDay() === 0 ||
+    (isToday && afterClose)
   )
 }
 

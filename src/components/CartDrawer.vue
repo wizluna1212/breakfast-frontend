@@ -17,13 +17,15 @@
     </div>
 
     <!-- 中間：滾動商品區域 -->
-    <div class="overflow-y-auto px-4 pt-4" style="max-height: calc(100vh - 160px)">
+    <div class="overflow-y-auto md:px-4 pt-4" style="max-height: calc(100vh - 160px)">
       <div v-if="cartStore.cartItems.length === 0" class="text-center">購物車是空的</div>
+      <!-- 購物車項目 -->
       <div v-else class="space-y-4">
         <div v-for="item in cartStore.cartItems" :key="item.cartId" class="border-b pb-4">
           <div class="center-x items-start">
             <div class="flex-1">
               <div class="font-bold">{{ item.name }}</div>
+              <!-- 加料 -->
               <div class="text-sm text-gray-500 mt-1">
                 <span v-for="(extra, index) in item.extras" :key="extra.id">
                   {{ extra.name }}:
@@ -36,9 +38,12 @@
                 </span>
               </div>
             </div>
-            <div class="center-y gap-2 ml-4">
-              {{ item.quantity }}
-              <div class="text-red-500 w-20 text-right">${{ cartStore.getItemTotal(item) }}</div>
+            <!-- 數量 -->
+            <div class="w-3">{{ item.quantity }}</div>
+            <!-- 價格 -->
+            <div class="text-red-500 w-10 text-right">${{ cartStore.getItemTotal(item) }}</div>
+            <!-- 按鈕區 -->
+            <div class="flex flex-col gap-2 items-end">
               <el-button circle size="small" class="hover:bg-gray-100" @click="editItem(item)">
                 <el-icon><Edit /></el-icon>
               </el-button>

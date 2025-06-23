@@ -9,13 +9,13 @@
       </p>
       <!-- 響應式導覽列 -->
       <el-button
-        class="md:hidden absolute -right-1 -top-1 hover:bg-orange-100"
+        class="xs:hidden absolute -right-1 -top-1 hover:bg-orange-100"
         @click="showDrawer = true"
         circle
         ><el-icon><MoreFilled /></el-icon
       ></el-button>
       <!-- 大螢幕選單（水平排列） -->
-      <div class="hidden md:center-y space-x-3">
+      <div class="hidden xs:center-y space-x-3">
         <nav class="">
           <template v-for="item in displayNavItems" :key="item.path">
             <template v-if="item.label === '會員'">
