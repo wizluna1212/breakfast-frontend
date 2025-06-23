@@ -630,6 +630,9 @@ watch(
       nextTick(() => {
         formRef.value?.clearValidate()
       })
+    } else if (!isLoggedIn) {
+      orderData.name = ''
+      orderData.phone = ''
     }
   },
 )

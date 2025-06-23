@@ -30,6 +30,8 @@ export const useUserStore = defineStore('user', {
     logout() {
       this.token = ''
       this.userInfo = { id: null, name: '', email: '', phone: '', birthday: '', createdAt: '' }
+      orderData.name = ''
+      orderData.phone = ''
       localStorage.removeItem('token')
       // 清除歷史訂單資料
       const historyStore = useOrderHistoryStore()
