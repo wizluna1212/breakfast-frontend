@@ -33,7 +33,7 @@
     <div class="mt-6 center-xy">
       <div class="mx-auto w-full text-center">
         <el-table :data="filteredOrders" style="width: 100%">
-          <el-table-column prop="orderId" label="訂單編號" width="200" fixed />
+          <el-table-column prop="orderId" label="訂單編號" width="200" />
           <el-table-column prop="timestamp" label="訂單產生時間" width="230">
             <template #default="{ row }">
               {{ formatDate(row.timestamp) }}
@@ -62,8 +62,8 @@
     </div>
 
     <!-- 訂單詳情對話框 -->
-    <el-dialog v-model="showHistory" title="訂單詳情" width="50%">
-      <div v-if="selectedOrder" class="p-5">
+    <el-dialog v-model="showHistory" title="訂單詳情" width="100% md:60% ">
+      <div v-if="selectedOrder" class="p-3 md:p-5">
         <div class="flex items-center mb-4">
           <span class="font-bold w-24">訂單編號：</span>
           <span>{{ selectedOrder.orderId }}</span>
@@ -109,14 +109,14 @@
           <div class="center-x border-b py-1 font-bold bg-gray-100 text-gray-400 text-center">
             <div class="w-1/2">商品名稱</div>
             <div class="w-1/4">數量</div>
-            <div class="w-1/4 text-right">價格</div>
+            <div class="w-1/4 text-right pr-2">價格</div>
           </div>
           <!-- 商品列 -->
           <div v-for="item in selectedOrder.items" :key="item.cartId" class="border-b">
             <div class="center-xy py-1">
               <div class="w-1/2 text-lg">{{ item.name }}</div>
               <div class="w-1/4 text-center">{{ item.quantity }}</div>
-              <div class="w-1/4 text-right">${{ item.price * item.quantity }}</div>
+              <div class="w-1/4 text-right pr-2">${{ item.price * item.quantity }}</div>
             </div>
             <!-- 加料列 -->
             <div v-if="item.extras && item.extras.length > 0">
@@ -124,7 +124,7 @@
                 <div v-for="opt in extra.options" :key="opt.id" class="center-xy w-full py-1">
                   <div class="w-1/2 pl-4">{{ opt.name }} (${{ opt.price }})</div>
                   <div class="w-1/4 text-center">{{ opt.quantity }}</div>
-                  <div class="w-1/4 text-right">${{ opt.price * opt.quantity }}</div>
+                  <div class="w-1/4 text-right pr-2">${{ opt.price * opt.quantity }}</div>
                 </div>
               </div>
             </div>
