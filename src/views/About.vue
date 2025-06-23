@@ -2,7 +2,7 @@
   <div class="max-w-4xl mx-auto p-6">
     <div class="relative">
       <H1
-        class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-4 text-2xl text-gray-700 font-semibold"
+        class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-4 text-2xl text-gray-700 font-semibold whitespace-nowrap text-center"
       >
         關於這個專案
       </H1>
@@ -21,7 +21,7 @@
             <li>商品管理：支援商品分類、搜尋功能，可自定義加料選項</li>
             <li>購物車系統：可加入商品、編輯數量、選擇加料，即時計算總價</li>
             <li>會員系統：提供註冊、登入、登出功能，支援密碼重設</li>
-            <li>訂單管理：會員可查詢歷史訂單，支援訪客下單</li>
+            <li>訂單查詢：可依照會員或訪客身分顯示各自的訂單</li>
             <li>響應式設計：支援各種裝置尺寸，提供最佳使用體驗</li>
           </ul>
         </section>
