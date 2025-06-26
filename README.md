@@ -66,7 +66,6 @@ Breakfast Project
 ### 前端（Vue 3 + Vite）
 
 ```bash
-cd frontend
 npm install
 npm run dev
 
