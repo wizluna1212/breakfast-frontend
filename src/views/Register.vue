@@ -58,10 +58,21 @@
         </el-form-item>
         <!-- 驗證碼 -->
         <el-form-item label="驗證碼" prop="captcha">
-          <div class="center-x space-x-3">
-            <el-input v-model="form.captcha" placeholder="請輸入4位數字驗證碼" class="w-[300px]" />
-            <div class="border border-gray-300 px-2">{{ randomCode }}</div>
-            <el-button @click="getRandomCode" link>重新產生</el-button>
+          <div class="flex flex-col gap-2 xs:flex-row xs:items-center xs:gap-3">
+            <!-- 驗證碼輸入 -->
+            <el-input
+              v-model="form.captcha"
+              placeholder="請輸入4位數字驗證碼"
+              class="w-full sm:w-[180px]"
+            />
+
+            <!-- 顯示亂數驗證碼 -->
+            <div class="border border-gray-300 px-2 text-center min-w-[60px] h-8">
+              {{ randomCode }}
+            </div>
+
+            <!-- 重新產生按鈕 -->
+            <el-button @click="getRandomCode" link type="primary">重新產生</el-button>
           </div>
         </el-form-item>
       </el-form>
@@ -73,7 +84,7 @@
 </template>
 
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, onMounted, watch } from 'vue'
 import { register } from '@/api/login'
 import { useUserStore } from '@/stores/userStore'
 import { ElMessage } from 'element-plus'
@@ -194,4 +205,14 @@ const submit = async () => {
 onMounted(() => {
   getRandomCode()
 })
+
+watch(
+  () => userStore.isLoggedIn,
+  (isLoggedIn) => {
+    if (isLoggedIn) {
+      router.push('/')
+    }
+  },
+  { immediate: true },
+)
 </script>

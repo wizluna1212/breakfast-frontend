@@ -6,24 +6,25 @@
         :model="form"
         :rules="rules"
         ref="formRef"
-        class="p-5 w-[70%] mx-auto mt-3"
-        label-width="120px"
+        class="p-5 w-full max-w-md mx-auto mt-3"
+        label-width="100px"
       >
         <!-- 姓名（只顯示） -->
-        <el-form-item label="姓名">
+        <el-form-item label="姓名" class="mx-auto max-w-xs">
           <span class="text-gray-700">{{ form.name }}</span>
         </el-form-item>
         <!-- 電話 -->
-        <el-form-item label="手機" prop="phone">
+        <el-form-item label="手機" prop="phone" class="mx-auto max-w-xs">
           <el-input
             v-model="form.phone"
             placeholder="請輸入手機號碼"
             @blur="formatPhone"
             maxlength="11"
+            class="w-[150px]"
           />
         </el-form-item>
         <!-- 生日 -->
-        <el-form-item label="生日" prop="birthday">
+        <el-form-item label="生日" prop="birthday" class="mx-auto max-w-xs">
           <template v-if="form.birthday">
             <span class="text-gray-700">{{ form.birthday }}</span>
           </template>

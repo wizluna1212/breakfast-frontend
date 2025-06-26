@@ -7,11 +7,16 @@
         :rules="rules"
         ref="formRef"
         class="p-5 w-full max-w-[500px] mx-auto mt-3"
-        label-width="120px"
+        label-width="70px"
+        label-position="left"
       >
         <!-- 信箱 -->
-        <el-form-item label="信箱" prop="email">
-          <el-input v-model="form.email" placeholder="請輸入註冊時的信箱" />
+        <el-form-item label="信箱" prop="email" class="mx-auto max-w-xs">
+          <el-input
+            v-model="form.email"
+            placeholder="請輸入註冊時的信箱"
+            class="w-full max-w-[250px]"
+          />
         </el-form-item>
       </el-form>
       <el-button class="w-[200px] mx-auto block mb-5 !rounded-md" type="primary" @click="submit"

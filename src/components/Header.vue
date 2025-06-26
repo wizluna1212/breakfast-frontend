@@ -15,8 +15,8 @@
         ><el-icon><MoreFilled /></el-icon
       ></el-button>
       <!-- 大螢幕選單（水平排列） -->
-      <div class="hidden xs:center-y space-x-3">
-        <nav class="">
+      <div class="hidden xs:center-y">
+        <nav class="flex space-x-3 pr-3">
           <template v-for="item in displayNavItems" :key="item.path">
             <template v-if="item.label === '會員'">
               <el-dropdown v-if="userStore.isLoggedIn" trigger="click">

@@ -1,6 +1,6 @@
 <template>
   <footer class="bg-orange-400 py-5 text-white">
-    <div class="w-full mx-auto md:h-[260px] sm:px-4">
+    <div class="w-full mx-auto md:h-[260px] px-6">
       <div class="mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- 店鋪資訊 -->
         <div>
@@ -8,7 +8,7 @@
           <div>地址:台灣</div>
           <div>電話:02-1234-5678</div>
           <div>Email：breakfast@example.com</div>
-          <div class="pt-1">營業時間：每日 06:00 - 11:00</div>
+          <div class="pt-1">營業時間：每日 06:00 - 15:00</div>
         </div>
         <!-- 社群連結 -->
         <div>

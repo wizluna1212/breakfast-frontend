@@ -53,7 +53,7 @@
   </div>
   <!-- 購物車圖示 -->
   <div
-    class="fixed bottom-[80px] right-3 h-10 w-10 center-xy rounded-full bg-orange-400 text-white"
+    class="fixed bottom-[80px] lg:top-[200px] right-3 h-10 w-10 center-xy rounded-full bg-orange-400 text-white border border-white"
     @click="cartStore.toggleCart"
   >
     <div

@@ -6,8 +6,9 @@
         :model="form"
         :rules="rules"
         ref="formRef"
-        class="p-5 w-[70%] mx-auto mt-3"
-        label-width="120px"
+        class="p-5 w-full max-w-xl mx-auto mt-3 space-y-8"
+        label-width="100px"
+        label-position="left"
       >
         <!-- 舊密碼 -->
         <el-form-item label="舊密碼" prop="oldPassword">
@@ -16,6 +17,7 @@
             type="password"
             show-password
             placeholder="請輸入舊密碼"
+            class="w-full max-w-[400px]"
           />
         </el-form-item>
         <!-- 新密碼 -->
@@ -25,6 +27,7 @@
             type="password"
             show-password
             placeholder="密碼需8-12位，需有英文大小寫及數字"
+            class="w-full max-w-[400px]"
           />
         </el-form-item>
         <!-- 確認新密碼 -->
@@ -34,6 +37,7 @@
             type="password"
             show-password
             placeholder="請輸入相同的新密碼"
+            class="w-full max-w-[400px]"
           />
         </el-form-item>
       </el-form>

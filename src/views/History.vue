@@ -52,7 +52,7 @@
               {{ formatDate(row.takeTime) }}
             </template>
           </el-table-column>
-          <el-table-column label="訂單詳細" min-width="120" fixed="right">
+          <el-table-column label="訂單詳細" fixed="right" class="w-[110px]">
             <template #default="{ row }">
               <el-button type="primary" link @click="showOrderDetails(row)"> 查看詳情 </el-button>
             </template>
