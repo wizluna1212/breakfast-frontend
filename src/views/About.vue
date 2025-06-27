@@ -60,7 +60,7 @@
               target="_blank"
               class="text-blue-600 hover:text-blue-800 hover:underline transition-colors duration-200"
             >
-              https://github.com/wizluna1212/breakfast-frontend.git
+              原始碼連結
             </a>
           </p>
         </section>
