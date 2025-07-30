@@ -25,7 +25,7 @@ export const useCartStore = defineStore('cart', () => {
       )
     }, 0)
 
-    return basePrice + extrasPrice
+    return basePrice + extrasPrice * item.quantity
   }
 
   //購物車所有項目的總價

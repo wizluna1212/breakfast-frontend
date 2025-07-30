@@ -39,7 +39,7 @@
               </div>
             </div>
             <!-- 數量 -->
-            <div class="w-3">{{ item.quantity }}</div>
+            <div class="w-8">{{ item.quantity }}個</div>
             <!-- 價格 -->
             <div class="text-red-500 w-10 text-right">${{ cartStore.getItemTotal(item) }}</div>
             <!-- 按鈕區 -->
