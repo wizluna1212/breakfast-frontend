@@ -565,6 +565,12 @@ const stepToTwo = () => {
 
 //送出訂單API
 const checkSendOrder = async () => {
+  // 表單驗證
+  const valid = await formRef.value.validate().catch(() => false)
+  if (!valid) {
+    ElMessage.error('請確認表單資料正確')
+    return
+  }
   //根據登入與否，把訂單資料存到db或local
   const isLoggedIn = !!userStore.token
   try {
