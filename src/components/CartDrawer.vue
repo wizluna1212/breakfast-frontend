@@ -31,7 +31,9 @@
                   {{ extra.name }}:
                   <span v-for="(opt, optIndex) in extra.options" :key="opt.id">
                     {{ opt.name }}
-                    <template v-if="extra.type === 'add-on'"> x{{ opt.quantity }} </template>
+                    <template v-if="extra.type === 'add-on'">
+                      x{{ opt.quantity }}（每份都加）
+                    </template>
                     <template v-if="optIndex < extra.options.length - 1">, </template>
                   </span>
                   <template v-if="index < item.extras.length - 1"> | </template>

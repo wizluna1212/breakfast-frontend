@@ -123,8 +123,10 @@
               <div v-for="extra in item.extras" :key="extra.id">
                 <div v-for="opt in extra.options" :key="opt.id" class="center-xy w-full py-1">
                   <div class="w-1/2 pl-4">{{ opt.name }} (${{ opt.price }})</div>
-                  <div class="w-1/4 text-center">{{ opt.quantity }}</div>
-                  <div class="w-1/4 text-right pr-2">${{ opt.price * opt.quantity }}</div>
+                  <div class="w-1/4 text-center">{{ opt.quantity }}(每份都加)</div>
+                  <div class="w-1/4 text-right pr-2">
+                    ${{ opt.price * opt.quantity * item.quantity }}
+                  </div>
                 </div>
               </div>
             </div>
