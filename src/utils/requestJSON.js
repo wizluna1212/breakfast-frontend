@@ -2,7 +2,9 @@ import axios from 'axios'
 import { useUserStore } from '@/stores/userStore'
 
 const service = axios.create({
-  baseURL: import.meta.env.VITE_APP_BASE_API,
+  baseURL:
+    import.meta.env.VITE_APP_BASE_API ||
+    (import.meta.env.PROD ? 'https://superb-tiglon-wizluna1212-8f061ac6.koyeb.app' : '/api'),
   timeout: 60000,
 })
 
