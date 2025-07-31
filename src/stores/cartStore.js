@@ -63,7 +63,7 @@ export const useCartStore = defineStore('cart', () => {
       const cartItem = {
         cartId: cartId,
         cateId: product.cateId,
-        prodId: product.id,
+        prodId: product.prodId || product.id,
         name: product.name,
         price: product.price,
         quantity: product.quantity || 1,
@@ -73,12 +73,16 @@ export const useCartStore = defineStore('cart', () => {
       }
       logRaw('準備加入的購物車項目:', cartItem)
 
-      // 檢查是否存在相同的商品（包括加料）
+      // 檢查是否存在相同的商品（包括加料），且不是當前正在編輯的商品
       const sameItemIndex = cartItems.value.findIndex((item) => {
-        return (
-          item.prodId === cartItem.prodId &&
-          JSON.stringify(item.extras) === JSON.stringify(cartItem.extras)
-        )
+        // 檢查商品和加料是否完全相同
+        const isSameProduct = item.prodId === cartItem.prodId
+        const isSameExtras = JSON.stringify(item.extras) === JSON.stringify(cartItem.extras)
+
+        // 如果是編輯模式，還要確認不是當前正在編輯的商品
+        const isNotEditingItem = !editingItem.value || item.cartId !== editingItem.value.cartId
+
+        return isSameProduct && isSameExtras && isNotEditingItem
       })
 
       // 如果是編輯模式，找到當前商品的位置
@@ -87,7 +91,7 @@ export const useCartStore = defineStore('cart', () => {
         : -1
 
       if (sameItemIndex !== -1) {
-        // 如果找到相同商品，增加數量
+        // 找到相同商品且不是正在編輯的商品，合併數量
         cartItems.value[sameItemIndex].quantity += product.quantity || 1
         ElMessage.success('已合併相同商品')
 
@@ -96,12 +100,13 @@ export const useCartStore = defineStore('cart', () => {
           cartItems.value.splice(currentItemIndex, 1)
         }
       } else {
-        // 如果是編輯模式且沒有找到相同商品，更新原位置
+        // 沒有找到相同商品，正常添加或更新
         if (currentItemIndex !== -1) {
+          // 編輯模式：更新原位置
           cartItems.value[currentItemIndex] = cartItem
           ElMessage.success('更新購物車成功')
         } else {
-          // 如果是新商品，添加到購物車
+          // 新增模式：添加到購物車
           cartItems.value.push(cartItem)
           ElMessage.success('加入購物車成功')
         }
