@@ -47,11 +47,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { getBanners } from '@/api/api'
 import LoadingOverlay from '@/components/LoadingOverlay.vue'
 
+const route = useRoute()
 const banners = ref()
 const showText = ref(false) //首圖標題顯示
 const showButton = ref(false) //首圖按鈕顯示
@@ -59,6 +61,7 @@ const isLoading = ref(true)
 
 const fetchBanners = async () => {
   try {
+    isLoading.value = true
     const res = await getBanners()
     if (res.code === 0) {
       banners.value = res.data.list
@@ -67,12 +70,17 @@ const fetchBanners = async () => {
     }
   } catch (error) {
     console.error('API 請求失敗:', error)
+    ElMessage.error('取得輪播資料失敗')
   } finally {
     isLoading.value = false
   }
 }
 
-onMounted(async () => {
+const initializeComponent = async () => {
+  // 重置動畫狀態
+  showText.value = false
+  showButton.value = false
+
   await fetchBanners()
 
   // 文字先淡入
@@ -84,5 +92,20 @@ onMounted(async () => {
   setTimeout(() => {
     showButton.value = true
   }, 1500)
+}
+
+onMounted(async () => {
+  await initializeComponent()
 })
+
+// 監聽路由變化，當回到首頁時重新初始化
+watch(
+  () => route.path,
+  async (newPath, oldPath) => {
+    // 只有當從其他頁面跳轉到首頁時才重新初始化
+    if (newPath === '/' && oldPath !== '/') {
+      await initializeComponent()
+    }
+  },
+)
 </script>
