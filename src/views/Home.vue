@@ -47,30 +47,33 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, onMounted, onActivated } from 'vue'
 import { ElMessage } from 'element-plus'
 import { getBanners } from '@/api/api'
 import LoadingOverlay from '@/components/LoadingOverlay.vue'
 
-const route = useRoute()
-const banners = ref()
-const showText = ref(false) //首圖標題顯示
-const showButton = ref(false) //首圖按鈕顯示
+const banners = ref([])
+const showText = ref(false)
+const showButton = ref(false)
 const isLoading = ref(true)
 
-const fetchBanners = async () => {
+const fetchBanners = async (retry = 3) => {
   try {
     isLoading.value = true
     const res = await getBanners()
     if (res.code === 0) {
       banners.value = res.data.list
     } else {
-      ElMessage.error('取得輪播資料失敗')
+      throw new Error('取得輪播資料失敗')
     }
   } catch (error) {
     console.error('API 請求失敗:', error)
-    ElMessage.error('取得輪播資料失敗')
+    if (retry > 0) {
+      console.log(`重新嘗試獲取輪播圖 (${3 - retry + 1}/3)...`)
+      setTimeout(() => fetchBanners(retry - 1), 1000)
+    } else {
+      ElMessage.error('取得輪播資料失敗')
+    }
   } finally {
     isLoading.value = false
   }
@@ -98,14 +101,8 @@ onMounted(async () => {
   await initializeComponent()
 })
 
-// 監聽路由變化，當回到首頁時重新初始化
-watch(
-  () => route.path,
-  async (newPath, oldPath) => {
-    // 只有當從其他頁面跳轉到首頁時才重新初始化
-    if (newPath === '/' && oldPath !== '/') {
-      await initializeComponent()
-    }
-  },
-)
+// 當組件被激活時（從其他頁面返回）
+onActivated(async () => {
+  await initializeComponent()
+})
 </script>

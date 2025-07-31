@@ -22,6 +22,12 @@ watch(
       if (routesToRedirect.includes(currentRoute.name)) {
         router.push('/')
       }
+    } else {
+      // 用戶登入時，從特定頁面跳轉到首頁
+      const routesToRedirectOnLogin = ['register', 'forgotPassword', 'resetPassword']
+      if (routesToRedirectOnLogin.includes(currentRoute.name)) {
+        router.push('/')
+      }
     }
   },
   { immediate: true },

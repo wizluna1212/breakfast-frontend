@@ -29,7 +29,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
-import { login } from '@/api/login'
+import { login } from '@/api/api'
 import { useUserStore } from '@/stores/userStore'
 import { useRouter, useRoute } from 'vue-router'
 import { logRaw } from '@/utils/Logger'

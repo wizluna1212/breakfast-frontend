@@ -85,7 +85,7 @@
 
 <script setup>
 import { reactive, ref, onMounted, watch } from 'vue'
-import { register } from '@/api/login'
+import { register } from '@/api/api'
 import { useUserStore } from '@/stores/userStore'
 import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
